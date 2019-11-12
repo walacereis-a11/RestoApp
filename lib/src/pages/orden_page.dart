@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:restaurante/src/pages/producto_detalle.dart';
 import 'package:restaurante/src/providers/orden_provider.dart';
 class OrdenPage extends StatefulWidget {
   @override
@@ -28,8 +29,6 @@ class _OrdenPageState extends State<OrdenPage> {
                     Divider(),
                     _crearMesa(),
                     Divider(),
-                    _crearOrden(),
-                    Divider(),
                     _crearTotal(),
                     Divider(),
                     _crearObservacion(),
@@ -42,6 +41,12 @@ class _OrdenPageState extends State<OrdenPage> {
                           onPressed: ()=> _register(context)
                         );
                       }
+                    ),
+                    RaisedButton(
+                          child: Text('Borrar orden'),
+                          color: Colors.red,
+                          textColor: Colors.white,
+                          onPressed: ()=> _borrarOrden(context)
                     )
                 ],
     ),
@@ -73,6 +78,59 @@ Widget _crearNombre() {
   print("Etre aqui");
   final info = await ordenProvider.createPost(nombre, mesa, orden, total, observacion);
   print(info);
+  if(info['ok']==true){
+    showDialog(
+        context: context,
+        barrierDismissible: true,
+        builder: (context){
+
+            return AlertDialog(
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
+              title: Text('Confirmación de envío'),
+              content: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                    Text('La orden fue enviada con éxito.'),
+                    Icon(Icons.check, size: 100.0)
+                ],
+              ),
+              actions: <Widget>[
+                FlatButton( 
+                  child: Text('Ok'),
+                  onPressed: () => Navigator.of(context).pop(),
+                )
+              ],
+            );
+        }
+      );
+  }else
+  {
+  showDialog(
+          context: context,
+          barrierDismissible: true,
+          builder: (context){
+
+              return AlertDialog(
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
+                title: Text('Confirmación de envío'),
+                content: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                      Text('La orden no se envió con éxito.'),
+                      Icon(Icons.close, size: 100.0)
+                  ],
+                ),
+                actions: <Widget>[
+                  FlatButton(
+                    child: Text('Ok'),
+                    onPressed: () => Navigator.of(context).pop(),
+                  )
+                ],
+              );
+          }
+        );
+
+  }
   }
 
   Widget _crearMesa() {
@@ -86,7 +144,7 @@ Widget _crearNombre() {
         ),
         hintText: 'Número de mesa',
         labelText: 'Mesa',
-        suffixIcon: Icon(Icons.tab),
+        suffixIcon: Icon(Icons.people),
         helperText: 'Sólo es el número de mesa',
       ),
       onChanged: (valor){
@@ -97,46 +155,20 @@ Widget _crearNombre() {
     );
   }
 
-  Widget _crearOrden() {
-    return TextField(
-      textCapitalization: TextCapitalization.sentences,
-      decoration: InputDecoration(
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(20.0)
-        ),
-        hintText: 'Orden de la mesa',
-        labelText: 'Orden',
-        suffixIcon: Icon(Icons.menu),
-      ),
-      onChanged: (valor){
-        setState(() {
-          orden = valor;
-        });
-      },
-    );
-
-  }
 
   Widget _crearTotal() {
-    
-    return TextField(
-      keyboardType: TextInputType.numberWithOptions(decimal: true),
-      textCapitalization: TextCapitalization.sentences,
-      decoration: InputDecoration(
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(20.0)
-        ),
-        hintText: 'Total de la cuenta',
-        labelText: 'Total',
-        suffixIcon: Icon(Icons.monetization_on),
-        helperText: 'Sólo es el total',
-      ),
-      onChanged: (valor){
-        setState(() {
-          total = double.parse(valor);
-        });
-      },
+    total = totalorden;
+    orden = ordenCompleta;
+    return ListTile(
+      title: Text('El total es: $totalorden'),
+      subtitle: Text('La orden es: $ordenCompleta'),
+      
     );
+    
+    // onChanged: (valor){
+    //     setState(() {
+    //       total = double.parse(valor);
+    //     });
   }
 
   Widget _crearObservacion() {
@@ -148,7 +180,7 @@ Widget _crearNombre() {
         ),
         hintText: 'Detalles de la orden',
         labelText: 'Detalles',
-        suffixIcon: Icon(Icons.font_download),
+        suffixIcon: Icon(Icons.assignment),
       ),
       onChanged: (valor){
         setState(() {
@@ -159,6 +191,14 @@ Widget _crearNombre() {
 
   }
 
+  _borrarOrden(BuildContext context) {
+    
+    setState(() {
+    ordenCompleta="";
+    totalorden = 0;   
+    });
+  }
+  
 
 
 }

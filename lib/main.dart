@@ -5,6 +5,7 @@ import 'package:restaurante/src/pages/drink_page.dart';
 import 'package:restaurante/src/pages/home_page.dart';
 import 'package:restaurante/src/pages/intro_page.dart';
 import 'package:restaurante/src/pages/orden_page.dart';
+import 'package:restaurante/src/pages/producto_detalle.dart';
  
 void main() => runApp(MyApp());
  
@@ -23,6 +24,7 @@ class MyApp extends StatelessWidget {
         'Drinks' : (BuildContext context) => DrinkPage(),
         'Aperitivos': (BuildContext context) => AperitivoPage(),
         'Orden':(BuildContext context) => OrdenPage(),
+        'Detalle':(BuildContext context) => ProductoDetalle(),
       },
     );
   }

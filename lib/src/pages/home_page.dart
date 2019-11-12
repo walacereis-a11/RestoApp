@@ -14,12 +14,12 @@ class HomePage extends StatelessWidget {
        elevation: 50,
        backgroundColor: Colors.red,
        actions: <Widget>[
-         IconButton(
-          icon: Icon(Icons.search),
-          onPressed: (){
+        //  IconButton(
+        //   icon: Icon(Icons.search),
+        //   onPressed: (){
 
-          },
-         )
+        //   },
+        //  )
        ],
      ),
      body: Container(

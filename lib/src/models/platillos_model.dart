@@ -16,6 +16,9 @@ class Productos{
 
 
 class Producto {
+
+  String uniqueId;
+
   int id;
   String nombre;
   String descripcion;

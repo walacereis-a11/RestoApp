@@ -9,7 +9,7 @@ class OrdenProvider{
   {
     'nombre_cliente': nombreCliente,
     'mesa': mesa,
-    'orden': orden,
+    'orden': orden, 
     'total': total,
     'observacion': observacion
   };

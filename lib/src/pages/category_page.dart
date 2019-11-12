@@ -29,43 +29,93 @@ class _CategoryPageState extends State<CategoryPage> {
   Widget _lista(BuildContext context) {
     return ListView(
       children: <Widget>[
+        SafeArea(
+            child: Container(
+              height: 80.0,
+            ),
+          ),
         SizedBox(height: 30.0),
-        ListTile(
-          contentPadding: EdgeInsets.only(bottom:60.0),
-          title: Text('Platillos', style: TextStyle(
+        ClipRRect(
+          borderRadius: BorderRadius.circular(40.0),
+          child: FlatButton(
+            padding: EdgeInsets.symmetric(vertical: 30.0),
+            textColor: Colors.white,
+            child: Row(
+              children: <Widget>[
+              SafeArea(
+                  child: Container(
+                    width: 130.0,
+                  ),
+                ),
+              Icon(Icons.restaurant),
+              SizedBox(width: 10.0),
+              Text('Platillos',style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 30,
               )),
-          subtitle: Text('Aquí están los platillos fuertes.'),
-          leading: Icon(Icons.restaurant),
-          trailing: Icon(Icons.arrow_forward_ios),
-          onTap:()=> Navigator.pushNamed(context, 'Home'),
+              
+              ],
+            ),
+            onPressed: ()=> Navigator.pushNamed(context, 'Home'),
+            color: Colors.red,
+          )
+
         ),
         Divider(color: Colors.red),
         SizedBox(height: 30.0),
-        ListTile(
-          contentPadding: EdgeInsets.only(bottom:60.0),
-          title: Text('Bebidas',style: TextStyle(
+        ClipRRect(
+          borderRadius: BorderRadius.circular(40.0),
+          child: FlatButton(
+            padding: EdgeInsets.symmetric(vertical: 30.0),
+            textColor: Colors.white,
+            child: Row(
+              children: <Widget>[
+              SafeArea(
+                  child: Container(
+                    width: 130.0,
+                  ),
+                ),
+              Icon(Icons.local_drink),
+              SizedBox(width: 10.0),
+              Text('Bebidas',style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 30,
               )),
-          subtitle: Text('Aquí están las bebidas'),
-          leading: Icon(Icons.local_drink),
-          trailing: Icon(Icons.arrow_forward_ios),
-          onTap:()=> Navigator.pushNamed(context, 'Drinks'),
+              
+              ],
+            ),
+            onPressed: ()=> Navigator.pushNamed(context, 'Drinks'),
+            color: Colors.red,
+          )
+
         ),
         Divider(color: Colors.red),
         SizedBox(height: 30.0),
-        ListTile(
-          contentPadding: EdgeInsets.only(bottom:60.0),
-          title: Text('Aperitivos',style: TextStyle(
+        ClipRRect(
+          borderRadius: BorderRadius.circular(40.0),
+          child: FlatButton(
+            padding: EdgeInsets.symmetric(vertical: 30.0),
+            textColor: Colors.white,
+            child: Row(
+              children: <Widget>[
+              SafeArea(
+                  child: Container(
+                    width: 130.0,
+                  ),
+                ),
+              Icon(Icons.fastfood),
+              SizedBox(width: 10.0),
+              Text('Aperitivos',style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 30,
               )),
-          subtitle: Text('Aquí están los aperitivos.'),
-          leading: Icon(Icons.restaurant),
-          trailing: Icon(Icons.arrow_forward_ios),
-          onTap:()=> Navigator.pushNamed(context, 'Aperitivos'),
+              
+              ],
+            ),
+            onPressed: ()=> Navigator.pushNamed(context, 'Aperitivos'),
+            color: Colors.red,
+          )
+
         ),
         Divider(color: Colors.red),
       ],
